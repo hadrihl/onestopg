@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-    <title>OneStopG</title>
+    <title>OneStopGroceries Portal</title>
     <style>
     	table, th, td {
     		border: 1px solid black;

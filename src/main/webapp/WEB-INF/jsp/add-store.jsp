@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>Hello</title>
+    <title>OneStopGroceries Portal</title>
 </head>
 <body>
     <h1>Add Store</h1>
