@@ -32,7 +32,7 @@ public class StoreController {
 	
 	@PostMapping("/add-store")
 	public String processAddStore(@ModelAttribute("store") Store store) {
-		storeService.addStore(store);
+		storeService.saveStore(store);
 		return "redirect:stores";
 	}
 }

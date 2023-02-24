@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-    <title>OneStopG</title>
+    <title>OneStopGroceries Portal</title>
     <style>
     	table, th, td {
     		border: 1px solid black;
@@ -29,12 +29,25 @@
     		<tr>
     			<th>#</th>
     			<th>Store Name</th>
+    			<th>Address</th>
+    			<th>PIC</th>
+    			<th>Email</th>
     			<th>Phone Number</th>
+    			<th>Status</th>
+    			<th>Action</th>
     		</tr>
     		<c:forEach var="store" items="${stores}" varStatus="row">
     			<td>${row.index+1 }</td>
 		    	<td>${store.name }</td>
+		    	<td>address1</td>
+		    	<td>pic1</td>
+		    	<td>email1@example.com</td>
 		    	<td>${store.phone_number }</td>
+		    	<td>Active</td>
+		    	<td>
+		    		<a href="#">Edit</a>
+		    		<a href="#">Delete</a>
+		    	</td>
 		    <tr>
 		    </c:forEach>
     		</tr>
