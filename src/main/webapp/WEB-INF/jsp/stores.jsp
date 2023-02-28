@@ -67,8 +67,6 @@
    		<a href="/add-store"><button>Add Store</button></a>
    	</div> 
     
-    
-    
     <div class="container">
     	<form:form action="/search" method="post" modelattribute="keyword">
     	<h5>Search: </h5>
