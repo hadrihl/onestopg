@@ -13,8 +13,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.example.onestopg.controller.Role;
-
 @Entity
 @Table(name = "user")
 public class User {
@@ -32,10 +30,10 @@ public class User {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "users_roles",
-			joinColumns = @JoinColumn(referencedColumnName = "user_id"),
-			inverseJoinColumns = @JoinColumn(referencedColumnName = "role_id")
+			joinColumns = @JoinColumn(name = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "role_id")
 			)
-	Set<Role> roles = new HashSet<>();
+	private Set<Role> roles = new HashSet<>();
 	
 	// default constructor
 	public User() {

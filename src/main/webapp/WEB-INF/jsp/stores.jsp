@@ -15,6 +15,8 @@
 <body>
     <h1>Welcome to OneStopGroceries!</h1>
     
+    
+    
     <c:if test="${empty stores}">
     <div class="container">
     	<p>No stores found.</p>
