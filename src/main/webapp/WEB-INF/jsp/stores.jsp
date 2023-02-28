@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>OneStopGroceries Portal</title>
@@ -61,8 +62,24 @@
     
     </c:if>	
     </div>
+   
+   	<div class="container" style="margin-top: 10px;">
+   		<a href="/add-store"><button>Add Store</button></a>
+   	</div> 
     
-    <a href="/add-store">Add Store</a>
     
+    
+    <div class="container">
+    	<form:form action="/search" method="post" modelattribute="keyword">
+    	<h5>Search: </h5>
+    	<input type="text" id="keyword" name="keyword" />
+    	<input type="submit" value="Search"/> 
+    	</form:form>
+    
+	    <div class="container" style="margin-top: 10px;">
+	    	<a href="/stores"><button>Reset</button></a>
+	    </div>
+    
+    </div>
 </body>
 </html>

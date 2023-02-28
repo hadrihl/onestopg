@@ -1,12 +1,16 @@
 package com.example.onestopg.service;
 
 import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.onestopg.entity.Store;
 import com.example.onestopg.repository.StoreRepository;
 
 @Service
+@Transactional
 public class StoreService {
 	
 	@Autowired
@@ -38,5 +42,9 @@ public class StoreService {
 	
 	public void deleteStore(Integer id) {
 		storeRepository.deleteById(id);
+	}
+	
+	public List<Store> search(String keyword) {
+		return storeRepository.search(keyword);
 	}
 }

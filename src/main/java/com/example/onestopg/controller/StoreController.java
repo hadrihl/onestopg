@@ -56,4 +56,11 @@ public class StoreController {
 		storeService.deleteStore(id);
 		return "redirect:/stores";
 	}
+	
+	@PostMapping("/search")
+	public String searchStore(Model model, @ModelAttribute("keyword") String keyword) {
+		List<Store> stores = storeService.search(keyword);
+		model.addAttribute("stores", stores);
+		return "stores";
+	}
 }
