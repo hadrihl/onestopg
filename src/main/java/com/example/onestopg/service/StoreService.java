@@ -13,10 +13,30 @@ public class StoreService {
 	private StoreRepository storeRepository;
 	
 	public Store saveStore(Store store) {
+		store.setStatus(true);
 		return storeRepository.save(store);
 	}
 	
 	public List<Store> getAllStores() {
 		return storeRepository.findAll();
+	}
+	
+	public Store getStoreById(Integer id) {
+		return storeRepository.findById(id).get();
+	}
+	
+	public Store updateStore(Store tmp, Integer id) {
+		Store store = storeRepository.findById(id).get();
+		store.setName(tmp.getName());
+		store.setAddress(tmp.getAddress());
+		store.setEmail(tmp.getEmail());
+		store.setPhone_number(tmp.getPhone_number());
+		store.setStatus(tmp.getStatus());
+		store.setLocalities(tmp.getLocalities());
+		return storeRepository.save(store);
+	}
+	
+	public void deleteStore(Integer id) {
+		storeRepository.deleteById(id);
 	}
 }

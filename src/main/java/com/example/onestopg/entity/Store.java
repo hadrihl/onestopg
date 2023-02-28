@@ -17,6 +17,17 @@ public class Store {
 	private String phone_number;
 	
 	private String[] localities;
+	
+	private String address;
+	
+	private String email;
+	
+	private Boolean status;
+
+	public Store() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public Integer getId() {
 		return id;
@@ -48,5 +59,31 @@ public class Store {
 
 	public void setLocalities(String[] localities) {
 		this.localities = localities;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
 	} 
+	
+	
 }

@@ -24,13 +24,12 @@
     <c:if test="${not empty stores}">
     	<table>
     		<colgroup>
-    			<col span="4" />
+    			<col span="6" />
     		</colgroup>
     		<tr>
     			<th>#</th>
     			<th>Store Name</th>
     			<th>Address</th>
-    			<th>PIC</th>
     			<th>Email</th>
     			<th>Phone Number</th>
     			<th>Status</th>
@@ -39,14 +38,20 @@
     		<c:forEach var="store" items="${stores}" varStatus="row">
     			<td>${row.index+1 }</td>
 		    	<td>${store.name }</td>
-		    	<td>address1</td>
-		    	<td>pic1</td>
-		    	<td>email1@example.com</td>
+		    	<td>${store.address }</td>
+		    	<td>${store.email }</td>
 		    	<td>${store.phone_number }</td>
+		    	
+		    	<c:if test="${store.status == false}">
+		    	<td>Inactive</td>
+		    	</c:if>
+		    	<c:if test="${store.status == true}">
 		    	<td>Active</td>
+		    	</c:if>
+		    	
 		    	<td>
-		    		<a href="#">Edit</a>
-		    		<a href="#">Delete</a>
+		    		<a href="/edit-store/${store.id }">Edit</a> &nbsp;
+		    		<a href="/delete-store/${store.id }">Delete</a>
 		    	</td>
 		    <tr>
 		    </c:forEach>
