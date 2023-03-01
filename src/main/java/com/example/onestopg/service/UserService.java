@@ -1,5 +1,7 @@
 package com.example.onestopg.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +31,34 @@ public class UserService {
 		System.out.println("role_user: " + roleRepository.findById(1).get());
 		System.out.println("role_admin: " + roleRepository.findById(2).get());
 		
-		user.addRoles(roleRepository.findById(1).get());
-		user.addRoles(roleRepository.findById(2).get());
+		user.addRole(roleRepository.findById(2).get()); //default authority - VIEW_STORE
 		return userRepository.save(user);
+	}
+	
+	public List<User> getAllUsers() {
+		return userRepository.findAll();
+	}
+	
+	public User getUserById(Integer id) {
+		return userRepository.findById(id).get();
+	}
+	
+	public User updateUserProfile(User tmp, Integer id, String ADD_STORE, String VIEW_STORE) {
+		User user = userRepository.findById(id).get();
+		user.setUsername(tmp.getUsername());
+		user.setEmail(tmp.getEmail());
+		
+		if (ADD_STORE == null) {
+			user.removeRole(roleRepository.findRoleByName("ADD_STORE"));
+		} else if (user.getRoles().size() == 1 && ADD_STORE.equalsIgnoreCase("on")) {
+			user.addRole(roleRepository.findRoleByName("ADD_STORE"));
+		}
+		
+		return userRepository.save(user);
+	}
+	
+	public void deleteUser(Integer id) {
+		userRepository.deleteById(id);
 	}
 }
  

@@ -10,5 +10,5 @@ import com.example.onestopg.entity.Role;
 public interface RoleRepository extends JpaRepository<Role, Integer> {
 	
 	@Query("SELECT r FROM Role r WHERE r.name = :name")
-	public String findRoleByName(String name);
+	public Role findRoleByName(String name);
 }

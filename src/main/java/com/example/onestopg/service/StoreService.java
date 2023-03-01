@@ -21,8 +21,13 @@ public class StoreService {
 		return storeRepository.save(store);
 	}
 	
-	public List<Store> getAllStores() {
-		return storeRepository.findAll();
+	public List<Store> getAllStores() throws StoreNotFoundException {
+		List<Store> stores = storeRepository.findAll();
+		if(stores.isEmpty()) {
+			throw new StoreNotFoundException("store not found.");
+		} else {
+			return stores;
+		}
 	}
 	
 	public Store getStoreById(Integer id) {

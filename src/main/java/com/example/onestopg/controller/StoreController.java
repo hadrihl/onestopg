@@ -3,6 +3,7 @@ package com.example.onestopg.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.onestopg.entity.Store;
+import com.example.onestopg.service.CustomUserDetails;
 import com.example.onestopg.service.StoreService;
 
 @Controller
@@ -21,14 +23,16 @@ public class StoreController {
 	public StoreService storeService;
 
 	@GetMapping("/stores")
-	public String getStoresPage(Model model) {
+	public String getStoresPage(Model model, @AuthenticationPrincipal CustomUserDetails loggedinUser) {
 		List<Store> stores = storeService.getAllStores();
+		model.addAttribute("username", loggedinUser.getUsername());
 		model.addAttribute("stores", stores);
 		return "stores";
 	}
 	
 	@GetMapping("/add-store")
-	public String getAddStorePage() {
+	public String getAddStorePage(Model model, @AuthenticationPrincipal CustomUserDetails loggedinUser) {
+		model.addAttribute("username", loggedinUser.getUsername());
 		return "add-store";
 	}
 	
@@ -39,8 +43,9 @@ public class StoreController {
 	}
 	
 	@GetMapping("/edit-store/{id}")
-	public String getEditStorePage(@PathVariable("id") Integer id, Model model) {
+	public String getEditStorePage(@PathVariable("id") Integer id, Model model, @AuthenticationPrincipal CustomUserDetails loggedinUser) {
 		Store store = storeService.getStoreById(id);
+		model.addAttribute("username", loggedinUser.getUsername());
 		model.addAttribute("store", store);
 		return "edit-store";
 	}
@@ -58,8 +63,9 @@ public class StoreController {
 	}
 	
 	@PostMapping("/search")
-	public String searchStore(Model model, @ModelAttribute("keyword") String keyword) {
+	public String searchStore(Model model, @ModelAttribute("keyword") String keyword, @AuthenticationPrincipal CustomUserDetails loggedinUser) {
 		List<Store> stores = storeService.search(keyword);
+		model.addAttribute("username", loggedinUser.getUsername());
 		model.addAttribute("stores", stores);
 		return "stores";
 	}

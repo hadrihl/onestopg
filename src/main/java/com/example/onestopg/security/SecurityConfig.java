@@ -47,10 +47,12 @@ public class SecurityConfig {
 				.loginProcessingUrl("/login")
 				.usernameParameter("username")
 				.defaultSuccessUrl("/stores")
+				.failureUrl("/signin-error")
 				.permitAll()
 				.and()
 			.logout()
 				.invalidateHttpSession(true)
+				.logoutSuccessUrl("/signin")
 				.permitAll();
 		
 		return http.build();

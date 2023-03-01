@@ -21,6 +21,12 @@
     		<input type="submit" value="Signin">
     	</form:form>
     </div>
+    
+    <c:if test="${not empty error_string}">
+    <div class="container" style="margin-top: 10px;">
+    	${error_string}
+    </div>
+    </c:if>
 
 </body>
 </html>

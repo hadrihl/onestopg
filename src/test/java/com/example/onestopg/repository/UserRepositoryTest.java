@@ -40,4 +40,9 @@ public class UserRepositoryTest {
 		
 		roleRepository.saveAll(List.of(role_admin, role_user));
 	}
+	
+	@Test
+	public void hello() {
+		System.out.println("hello!");
+	}
 }

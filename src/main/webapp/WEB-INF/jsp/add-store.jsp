@@ -7,6 +7,8 @@
     <title>OneStopGroceries Portal</title>
 </head>
 <body>
+	<%@ include file="components/navi.jsp" %> 
+	
     <h1>Add Store</h1>
     
 	<form:form action="/add-store" method="POST" modelattribute="store">

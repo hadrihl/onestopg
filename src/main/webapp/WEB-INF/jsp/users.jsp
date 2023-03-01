@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>OneStopGroceries Portal</title>
+    <title>Manage Users</title>
     <style>
     	table, th, td {
     		border: 1px solid black;
@@ -13,55 +13,51 @@
     </style>
 </head>
 <body>
-    <h1>Welcome to OneStopGroceries!</h1>
+    <h1>User Management</h1>
     
     <%@ include file="components/navi.jsp" %> 
     
-    <c:if test="${empty stores}">
+    <c:if test="${empty users}">
     <div class="container">
-    	<p>No stores found.</p>
+    	<p>No user(s) found.</p>
     </div>
     </c:if>
     
     <div class="container">
-    <c:if test="${not empty stores}">
+    <c:if test="${not empty users}">
     	<table>
     		<colgroup>
     			<col span="6" />
     		</colgroup>
     		<tr>
     			<th>#</th>
-    			<th>Store Name</th>
-    			<th>Address</th>
+    			<th>Username</th>
     			<th>Email</th>
-    			<th>Phone Number</th>
-    			<th>Status</th>
+    			<th>Authority</th>
     			<th>Action</th>
-    		</tr>
-    		<c:forEach var="store" items="${stores}" varStatus="row">
+    		</tr> 		
+    		
+    		<c:forEach var="user" items="${users}" varStatus="row">
+    		<tr>
     			<td>${row.index+1 }</td>
-		    	<td>${store.name }</td>
-		    	<td>${store.address }</td>
-		    	<td>${store.email }</td>
-		    	<td>${store.phone_number }</td>
+		    	<td>${user.username }</td>
+		    	<td>${user.email }</td>
 		    	
-		    	<c:if test="${store.status == false}">
-		    	<td>Inactive</td>
-		    	</c:if>
-		    	<c:if test="${store.status == true}">
-		    	<td>Active</td>
-		    	</c:if>
-		    	    	
-		    	<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-		    	<sec:authorize access="hasAuthority('ADD_STORE')">
 		    	<td>
-		    		<a href="/edit-store/${store.id }">Edit</a> &nbsp;
-		    		<a href="/delete-store/${store.id }">Delete</a>
+		    	<c:forEach var="role" items="${user.roles}">
+		    		${role.name }
+		    		
+		    	</c:forEach>
 		    	</td>
-		    	</sec:authorize>
-		    <tr>
+		   
+			   	<td>
+					<a href="/users/${user.id}">Edit</a> &nbsp;
+					<a href="/delete-user/${user.id}">Delete</a>
+			    </td>
+			</tr>
 		    </c:forEach>
-    		</tr>
+		    
+    		
     	</table>
     
     
@@ -71,12 +67,12 @@
    	<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 	<sec:authorize access="hasAuthority('ADD_STORE')">
    	<div class="container" style="margin-top: 10px;">
-   		<a href="/add-store"><button>Add Store</button></a>
+   		<a href="/add-user"><button>Add User</button></a>
    	</div>
    	</sec:authorize>
     
     <div class="container">
-    	<form:form action="/search" method="post" modelattribute="keyword">
+    	<form:form action="/search-user" method="post" modelattribute="keyword">
     	<h5>Search: </h5>
     	<input type="text" id="keyword" name="keyword" />
     	<input type="submit" value="Search"/> 
