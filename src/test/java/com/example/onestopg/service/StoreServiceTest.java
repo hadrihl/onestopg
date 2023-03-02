@@ -36,4 +36,5 @@ public class StoreServiceTest {
 		verify(storeRepository, times(1)).save(store);
 		assertEquals(store, savedStore);
 	}
+	
 }

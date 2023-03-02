@@ -8,11 +8,8 @@ import java.util.Set;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import com.example.onestopg.entity.Role;
 import com.example.onestopg.entity.User;
-
-import ch.qos.logback.core.encoder.ByteArrayUtil;
 
 public class CustomUserDetails implements UserDetails {
 	

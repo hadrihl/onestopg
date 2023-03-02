@@ -43,6 +43,7 @@ public class UserRepositoryTest {
 	
 	@Test
 	public void hello() {
-		System.out.println("hello!");
+		Long size = userRepository.count();		
+		System.out.println("userRepo: " + size);
 	}
 }

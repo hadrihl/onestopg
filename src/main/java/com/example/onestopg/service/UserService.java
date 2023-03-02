@@ -4,10 +4,11 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.example.onestopg.entity.User;
 import com.example.onestopg.repository.RoleRepository;
 import com.example.onestopg.repository.UserRepository;
@@ -22,16 +23,16 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
+	Logger logger = LogManager.getLogger(UserService.class);
+	
 	public User saveUser(User tmp) {
 		User user = new User();
 		user.setUsername(tmp.getUsername());
 		user.setEmail(tmp.getEmail());
 		user.setPassword(new BCryptPasswordEncoder().encode(tmp.getPassword()));
 		
-		System.out.println("role_user: " + roleRepository.findById(1).get());
-		System.out.println("role_admin: " + roleRepository.findById(2).get());
-		
 		user.addRole(roleRepository.findById(2).get()); //default authority - VIEW_STORE
+		
 		return userRepository.save(user);
 	}
 	
